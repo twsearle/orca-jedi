@@ -36,7 +36,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          token: ${{ secrets.GH_PAT }}
+          password: ${{ secrets.GH_PAT }}
       # This step uses
       # [docker/metadata-action](https://github.com/docker/metadata-action#about)
       # to extract tags and labels that will be applied to the specified image.
