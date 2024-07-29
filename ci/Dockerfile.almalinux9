@@ -297,7 +297,7 @@ RUN mkdir -p /var/tmp && wget -q -nc --no-check-certificate -P /var/tmp https://
     rm -rf /var/tmp/eccodes-2.30.1 /var/tmp/2.30.1.tar.gz
 
 # https://github.com/NOAA-EMC/bufr-query
-RUN mkdir -p /var/tmp && cd /var/tmp && git clone  https://github.com/NOAA-EMC/bufr-query bufr-query && cd - && cd /var/tmp/bufr-query && git checkout 65193ee3066f3f9977079e420be769926cb86342 && cd - && \
+RUN mkdir -p /var/tmp && cd /var/tmp && git clone  https://github.com/NOAA-EMC/bufr-query bufr-query && cd - && cd /var/tmp/bufr-query && git checkout tags/v0.0.1 && cd - && \
     mkdir -p /var/tmp/bufr-query/build && cd /var/tmp/bufr-query/build && LDFLAGS=-lnetcdf cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -DMPI=ON -DOMP=ON /var/tmp/bufr-query && \
     cmake --build /var/tmp/bufr-query/build --target all -- -j$(nproc) && \
     cmake --build /var/tmp/bufr-query/build --target install -- -j$(nproc) && \
