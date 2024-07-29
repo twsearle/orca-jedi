@@ -12,7 +12,7 @@ on:
 # workflow builds.
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: orca-jedi/ci-almalinux9
+  IMAGE_NAME: twsearle/orca-jedi/ci-almalinux9
 
 jobs:
   build-and-push-image:
