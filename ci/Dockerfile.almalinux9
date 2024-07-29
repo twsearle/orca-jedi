@@ -114,7 +114,7 @@ RUN yum install -y \
         wget \
         zlib-devel && \
     rm -rf /var/cache/yum/*
-RUN mkdir -p /var/tmp && wget -q -nc --no-check-certificate -P /var/tmp http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.14/hdf5-1.14.2/src/hdf5-1.14.2.tar.bz2 && \
+RUN mkdir -p /var/tmp && wget -q -nc --no-check-certificate -P /var/tmp https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.14/hdf5-1.14.2/src/hdf5-1.14.2.tar.bz2 && \
     mkdir -p /var/tmp && tar -x -f /var/tmp/hdf5-1.14.2.tar.bz2 -C /var/tmp -j && \
     cd /var/tmp/hdf5-1.14.2 &&  CC=mpicc CXX=mpicxx F77=mpif77 F90=mpif90 FC=mpifort ./configure --prefix=/usr/local --enable-build-mode=production --enable-cxx --enable-fortran --enable-parallel --enable-threadsafe --enable-unsupported --with-szlib=/usr/local --with-zlib=/usr/local && \
     make -j$(nproc) && \
