@@ -2,6 +2,9 @@ name: Create and publish the CI docker image
 
 # Configures this workflow to run when triggered.
 on:
+  push:
+    tags:
+      - v**
   workflow_dispatch:
 
 # Defines two custom environment variables for the workflow. These are used for
@@ -9,7 +12,7 @@ on:
 # workflow builds.
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: orca-jedi-ci 
+  IMAGE_NAME: orca-jedi/ci-almalinux9
 
 jobs:
   build-and-push-image:
