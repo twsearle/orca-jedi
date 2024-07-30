@@ -64,3 +64,5 @@ jobs:
             --workdir=/usr/local/src/orca-jedi/ci \
             --volume $PWD:/usr/local/src/orca-jedi \
             'ghcr.io/twsearle/orca-jedi/ci-almalinux9:develop'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
