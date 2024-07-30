@@ -9,11 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      attestations: read
-      id-token: write
     steps:
       - name: checkout current repo
         uses: actions/checkout@v3
@@ -56,7 +51,17 @@ jobs:
           repository: MetOffice/atlas-data
           lfs: true
           token: ${{ secrets.GH_PAT }}
+          
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_PAT }}
 
+      - name: Pull Docker image
+        run: docker pull ghcr.io/darth/orca-jedi/ci-almalinux9:develop
+      
       - name: build and test
         run: |
           docker run --rm \
@@ -64,5 +69,3 @@ jobs:
             --workdir=/usr/local/src/orca-jedi/ci \
             --volume $PWD:/usr/local/src/orca-jedi \
             'ghcr.io/twsearle/orca-jedi/ci-almalinux9:develop'
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
