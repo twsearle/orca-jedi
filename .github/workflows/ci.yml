@@ -9,6 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      attestations: read
+      id-token: write
     steps:
       - name: checkout current repo
         uses: actions/checkout@v3
@@ -58,5 +63,4 @@ jobs:
             --entrypoint=/usr/local/src/orca-jedi/ci/build-and-test.sh \
             --workdir=/usr/local/src/orca-jedi/ci \
             --volume $PWD:/usr/local/src/orca-jedi \
-            --user twsearle \
             'ghcr.io/twsearle/orca-jedi/ci-almalinux9:develop'
