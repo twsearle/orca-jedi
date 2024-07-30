@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.GH_PAT }}
 
       - name: Pull Docker image
-        run: docker pull ghcr.io/darth/orca-jedi/ci-almalinux9:develop
+        run: docker pull ghcr.io/twsearle/orca-jedi/ci-almalinux9:develop
       
       - name: build and test
         run: |
